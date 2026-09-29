@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8" />
+<title>Unidad-3</title>
+<meta name="generator" content="Geany 2.0" />
+<script src="MVCCanvas.js"></script>
+<script src="ejercicio-6.js"></script>
+</head>
+
+<body>
+
+</body>
+
+<script>
+
+function main()
+{
+	let modelo = new ModelEj6();
+	let vista = new View();
+	let controlador = new ControllerEj6(vista, modelo);
+
+	controlador.enable();
+
+	let btnCargar = document.createElement('button');
+	btnCargar.innerText = 'Cargar figura';
+	btnCargar.onclick = () =>
+	{
+		vista.dispatchEvent(new CustomEvent('request', { detail: { accion: 'cargar' } }));
+	}
+
+	let btnLimpiar = document.createElement('button');
+	btnLimpiar.innerText = 'Limpiar';
+	btnLimpiar.onclick = () =>
+	{
+		vista.dispatchEvent(new CustomEvent('request', { detail: { accion: 'limpiar' } }));
+	}
+
+	document.body.appendChild(btnCargar);
+	document.body.appendChild(btnLimpiar);
+	document.body.appendChild(vista);
+}
+
+window.onload = main;
+
+</script>
+
+</html>
